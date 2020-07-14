@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const db = null;
 try{ 
     mongoose.connect(`mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@pawpatrolshop.j082l.mongodb.net/${process.env.MONGODB_DBNAME}?retryWrites=true&w=majority`, {useNewUrlParser: true, useUnifiedTopology: true});
-
-    const db = mongoose.connection;
     
+    const db = mongoose.connection;
+    console.log('connection: ', db);
     db.on('error', console.error.bind(console, 'connection error:'));
     db.once('open', () => {
         console.log('connected to db');
