@@ -33,6 +33,22 @@ exports.validateUser = (req, res, next) => {
     }
 }
 
+exports.validateLogin = (req, res, next) => {
+    var emailRegex = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+    try {
+        const { email, password } = req.body;
+        assert(typeof email === 'string', 'email is missing');
+        assert.notEqual(email, '', 'email needs to have a value');
+        assert.match(email, emailRegex, 'email needs to be in correct format');
+        assert(typeof password === 'string', 'password is missing');
+        assert.notEqual(password, '', 'password needs to have a value');
+        assert.ok(password.length > 7, 'password too short');
+        next();
+    } catch (err) {
+        res.status(400).json({ message: err.toString() });
+    }
+}
+
 exports.addCountry = (req, res) => {
     try {
         const {name, countryCode} = req.body;
@@ -55,25 +71,47 @@ exports.addUser = (req, res) => {
     var access = 0; // default user
     bcrypt.genSalt(saltRounds, (err, salt) => {
         if (err) res.status(400).json({ message: err.toString() });
-        bcrypt.hash(password, salt, (err, hash) => {
-            if (err) res.status(400).json({ message: err.toString() });
+        bcrypt.hash(password, salt, (error, hash) => {
+            if (error) res.status(400).json({ message: error.toString() });
 
             var user = new userModel({email: email, password: hash, firstName: firstName, lastName: lastName, countryId: mongoose.Types.ObjectId(countryId), access: 1});
 
-            user.save((err, saved) => {
-                if (err) res.status(400).json({ message: err.toString() });
+            user.save((errr, saved) => {
+                if (errr) res.status(400).json({ message: errr.toString() });
 
-                var userAddress = new userAddressModel({address: address, zipCode: zipCode, city: city, userId: mongoose.Types.ObjectId(saved._id)});
+                if (saved !== undefined) {
+                    const userAddress = new userAddressModel({address: address, zipCode: zipCode, city: city, userId: mongoose.Types.ObjectId(saved._id)});
 
-                userAddress.save((err, saved) => {
-                    if (err) res.status(400).json({message: err.toString() });
+                    userAddress.save((errs, saved) => {
+                        if (errs) res.status(400).json({message: errs.toString() });
 
-                    res.status(200).json({
-                        message: 'added',
-                        data: saved
+                        res.status(200).json({
+                            message: 'added',
+                            data: saved
+                        });
                     });
-                });
+                }
             });
         });
     });
+}
+
+exports.login = async (req, res) => {
+    const { email, password } = req.body;
+
+    const user = await userModel.find({email: email});
+
+    if (user.length > 0) {
+        bcrypt.compare(password, user[0].password, (err, result) => {
+            if (err) res.status(400).json({ message: err.toString() });
+
+            if (result) {
+                res.status(200).json({ message: "OK"});
+            } else {
+                res.status(400).json({ message: "password is incorrect"});
+            }
+        })
+    } else {
+        res.status(404).json({ message: 'user not found!'});
+    }
 }
