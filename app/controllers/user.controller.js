@@ -74,7 +74,7 @@ exports.addUser = (req, res) => {
         bcrypt.hash(password, salt, (error, hash) => {
             if (error) res.status(400).json({ message: error.toString() });
 
-            var user = new userModel({email: email, password: hash, firstName: firstName, lastName: lastName, countryId: mongoose.Types.ObjectId(countryId), access: 1});
+            var user = new userModel({email: email, password: hash, firstName: firstName, lastName: lastName, countryId: mongoose.Types.ObjectId(countryId), access: 0});
 
             user.save((errr, saved) => {
                 if (errr) res.status(400).json({ message: errr.toString() });
