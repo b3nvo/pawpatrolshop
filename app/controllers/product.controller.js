@@ -115,3 +115,62 @@ exports.getProductsByCategoryId = (req, res) => {
         }
     );
 }
+
+exports.updateProductById = (req, res) => {
+    const { name, description, price, weight, categoryId} = req.body;
+
+    try {
+        productModel.findByIdAndUpdate(
+            mongoose.Types.ObjectId(req.params.productId),
+            {
+                name: name,
+                description: description,
+                price: price,
+                weight: weight,
+                categoryId: mongoose.Types.ObjectId(categoryId)
+            },
+            (err, resp) => {
+                if (err) res.status(400).json({ message: err.toString() });
+
+                console.log('product - PUT ', resp);
+                res.status(200).json({ message: 'updated'});
+            }
+        )
+    } catch (err) {
+        res.status(400).json({ message: err.toString() });
+    }
+}
+
+exports.deleteProductById = (req, res) => {
+    // only by admins
+
+    try {
+        productModel.findByIdAndDelete(
+            mongoose.Types.ObjectId(req.params.productId), 
+            (err, resp) => {
+                if (err) res.status(400).json({ message: err.toString() });
+
+                console.log('delete product', resp);
+                res.status(200).json({ message: 'deleted' });
+            }
+        );
+    } catch (err) {
+        res.status(400).json({ message: err.toString() });
+    }
+}
+
+exports.deleteCategoryById = (req, res) => {
+    try {
+        categoryModel.findByIdAndDelete(
+            mongoose.Types.ObjectId(req.params.categoryId),
+            (err, resp) => {
+                if (err) res.status(400).json({ message: err.toString() });
+
+                console.log('delete category', resp);
+                res.status(200).json({ message: 'deleted' });
+            }
+        );
+    } catch (err) {
+        res.status(400).json({ message: err.toString() });
+    }
+}

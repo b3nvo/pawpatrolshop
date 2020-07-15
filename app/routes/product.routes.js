@@ -11,11 +11,10 @@ router.get('/:productId', productController.getProductById);
 router.get('/category/:categoryId', productController.getProductsByCategoryId);
 
 // //PUT
-// router.put('/:productId', productController.updateProductById);
-// router.put('/category/:categoryId', productController.updateProductByCategoryId);
+router.put('/:productId', productController.updateProductById);
 
 // //DELETE
-// router.delete('/:productId', productController.deleteProductById);
-// router.delete('/category/:categoryId', productController.deleteCategory); 
+router.delete('/:productId', productController.deleteProductById);
+router.delete('/category/:categoryId', productController.deleteCategoryById); 
 
 module.exports = router;
