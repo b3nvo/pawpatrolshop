@@ -4,6 +4,7 @@ const userModel = require('../models/user.model');
 const assert = require('assert');
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
+const { count } = require('../models/country.model');
 const saltRounds = 10;
 
 exports.validateUser = (req, res, next) => {
@@ -74,13 +75,24 @@ exports.addUser = (req, res) => {
         bcrypt.hash(password, salt, (error, hash) => {
             if (error) res.status(400).json({ message: error.toString() });
 
-            var user = new userModel({email: email, password: hash, firstName: firstName, lastName: lastName, countryId: mongoose.Types.ObjectId(countryId), access: 0});
+            var user = new userModel(
+                    {
+                        email: email, 
+                        password: hash, 
+                        firstName: firstName, 
+                        lastName: lastName, 
+                        countryId: mongoose.Types.ObjectId(countryId), 
+                        access: 0
+                    }
+                );
 
             user.save((errr, saved) => {
                 if (errr) res.status(400).json({ message: errr.toString() });
 
                 if (saved !== undefined) {
-                    const userAddress = new userAddressModel({address: address, zipCode: zipCode, city: city, userId: mongoose.Types.ObjectId(saved._id)});
+                    const userAddress = new userAddressModel(
+                            {address: address, zipCode: zipCode, city: city, userId: mongoose.Types.ObjectId(saved._id)}
+                        );
 
                     userAddress.save((errs, saved) => {
                         if (errs) res.status(400).json({message: errs.toString() });
@@ -114,4 +126,55 @@ exports.login = async (req, res) => {
     } else {
         res.status(404).json({ message: 'user not found!'});
     }
+}
+
+exports.updateUser = (req, res) => {
+    const { firstName, lastName, countryId, address, zipCode, city } = req.body;
+
+    userModel.findOneAndUpdate(
+    {
+        _id: mongoose.Types.ObjectId(req.params.userId)
+    }, 
+    { 
+        firstName: firstName, 
+        lastName: lastName, 
+        countryId: mongoose.Types.ObjectId(countryId)
+    },
+    (err, resp) => {
+
+        if (err) res.status(400).json({ message: err.toString() });
+        userAddressModel.findOneAndUpdate(
+            {
+                userId: mongoose.Types.ObjectId(req.params.userId)
+            },
+            {
+                address: address,
+                zipCode: zipCode,
+                city: city,
+                UpdatedAt: Date.now()
+            },
+            (err, resp) => {
+                if (err) res.status(400).json({ message: err.toString() });
+                console.log(resp)
+                res.status(200).json({ message: 'updated'});
+            }
+        );
+    });
+    
+}
+
+exports.deleteUser = (req, res) => {
+    // later email toevoegen voor extra beveiliging
+    
+    userModel.findByIdAndDelete(mongoose.Types.ObjectId(req.params.userId), (err, resp) => {
+        if (err) res.status(400).json({ message: err.toString() });
+
+        console.log('user', resp);
+        userAddressModel.findOneAndDelete({userId: mongoose.Types.ObjectId(req.params.userId)}, (err, resp) => {
+            if (err) res.status(400).json({message: err.toString() });
+
+            console.log('useraddress', resp);
+            res.status(200).json({ message: 'deleted'}); 
+        });
+    });
 }
