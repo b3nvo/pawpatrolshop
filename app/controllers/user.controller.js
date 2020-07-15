@@ -4,7 +4,6 @@ const userModel = require('../models/user.model');
 const assert = require('assert');
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
-const { count } = require('../models/country.model');
 const saltRounds = 10;
 
 exports.validateUser = (req, res, next) => {
