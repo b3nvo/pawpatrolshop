@@ -9,8 +9,6 @@ import {
 import Home from './components/Home';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import PropTypes from "prop-types";
-import { withRouter } from "react-router";
 
 function App() {
   return (

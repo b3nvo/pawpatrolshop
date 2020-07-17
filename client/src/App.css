@@ -1,3 +1,9 @@
+* {
+  background-color: #343a40;
+  color: white;
+  font-family: 'verdana';
+}
+
 .App {
   text-align: center;
 }
