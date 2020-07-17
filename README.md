@@ -1,8 +1,13 @@
-# pawpatrolshop
+# PawPatrolShop
 
 a webshop in-progress
 
-## how to install 
+
+## Requirements
+- nodeJS (https://nodejs.org/en/)
+  - Yarn (npm install -g yarn)
+ 
+## How to install and start
 
 1. Make sure the project is cloned.
 2. Open the project in a code editor or use CMD and navigate to the directory
