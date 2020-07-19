@@ -1,0 +1,18 @@
+.carousel-item{
+    max-width: 100%;
+    max-height: 50vh;
+    background-clip: content-box;
+    background-position: center;
+    background-size: contain;
+}
+
+p.price { 
+    font-weight: bold; 
+}
+
+
+@media screen and (max-width: 800px) {
+    .carousel-item {
+        max-height: 25vh;
+    }
+}

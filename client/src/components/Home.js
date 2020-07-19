@@ -1,21 +1,25 @@
-import React, {useState} from 'react';
-import { Button, Form } from "react-bootstrap";
-import Menu from './Menu';
-import {withRouter} from "react-router-dom";
-import './Home.css';
+import React from "react";
+import Menu from "./Menu";
+import CarouselProducts from "./carousel";
+import { withRouter } from "react-router-dom";
+import "./Home.css";
 
 function Home() {
+  return (
+    <div className="home">
+      <div className="Menu">
+        <Menu />
+      </div>
 
-    return(
-        <div className="home">
-            <div className="Menu">
-                <Menu />
-            </div>
+      <div className="carousel">
+        <CarouselProducts />
+      </div>
 
-            <h1>Hello, PawPatrolShop in-progress</h1>
-        </div>
-        
-    )
+      <div className="products">
+          <h1> new releases come here! </h1>
+      </div>
+    </div>
+  );
 }
 
 export default withRouter(Home);
