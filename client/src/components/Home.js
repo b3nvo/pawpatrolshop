@@ -1,5 +1,6 @@
 import React from "react";
 import Menu from "./Menu";
+import Latest from "./latest";
 import CarouselProducts from "./carousel";
 import { withRouter } from "react-router-dom";
 import "./Home.css";
@@ -16,7 +17,7 @@ function Home() {
       </div>
 
       <div className="products">
-          <h1> new releases come here! </h1>
+        <Latest />
       </div>
     </div>
   );
