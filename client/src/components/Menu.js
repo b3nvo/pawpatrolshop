@@ -9,6 +9,9 @@ function Menu() {
   return (
     <div className="menuBar">
       <nav className="navMenu">
+        <li className="nav-left">
+            <a href="#home">PawPatrolShop</a>
+        </li>
         <li>
           <a href="#" className="nav-item">
             Home

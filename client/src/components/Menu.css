@@ -82,6 +82,16 @@
         width: 100%; 
         left: 0; 
       }
+
+      .nav-left{
+        float: left;
+        margin-left: 1em;
+      }
+
+      .nav-left a{
+        color: black !important;
+        font-weight: bold
+      }
      
 
       
@@ -98,5 +108,8 @@
     display: inline-block;
   }
 
+  .nav-left {
+    display: none;
+  }
 }
     
