@@ -28,7 +28,6 @@ class Latest extends React.Component {
                 <Card.Title>{el.name}</Card.Title>
                 <Card.Text>
                   {el.description}
-                  € {el.price}
                 </Card.Text>
               </Card.Body>
             </Card>
