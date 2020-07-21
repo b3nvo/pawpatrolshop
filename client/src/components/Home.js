@@ -19,7 +19,13 @@ function Home() {
       <div className="products">
         <Latest />
       </div>
+
+      <div className="footer">
+      <h1> footer here </h1>
     </div>
+    </div>
+
+    
   );
 }
 

@@ -14,7 +14,7 @@
         height: 50px;
         box-shadow: 0px 0px 0 black;
         transition: .25s box-shadow;
-        margin-right: .5em;
+        margin-right: 2em;
         float: right;
     }
 
@@ -39,6 +39,7 @@
     }
     nav li{
         display:inline;
+        margin-right: 5em;
     }
     nav a.nav-item {
         color: black;
@@ -85,20 +86,55 @@
 
       .nav-left{
         float: left;
-        margin-left: 1em;
+        margin-top: 1em;
+        margin-left: 2em;
       }
 
       .nav-left a{
         color: black !important;
-        font-weight: bold
+        font-weight: bold;
+        margin-top: 1em;
       }
      
+      .nav-left a:hover{
+        color: black !important;
+        font-weight: bold;
+        text-decoration: none;
+      }
 
+      @media screen and (max-width: 1200px) {
+        .btn-circle {
+            display: none;
+        }
       
+        nav li{
+          display:inline;
+          margin-right: 2em;
+      }
+      
+        a.nav-item {
+            font-size: 13px;
+        }
+      
+        .btn-login-li a.desktop-hidden {
+          display: inline-block;
+        }
+      
+        .nav-left {
+          display: none;
+        }
+      }
+      
+
 @media screen and (max-width: 800px) {
   .btn-circle {
       display: none;
   }
+
+  nav li{
+    display:inline;
+    margin-right: 0;
+}
 
   a.nav-item {
       font-size: 13px;

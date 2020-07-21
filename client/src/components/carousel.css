@@ -10,6 +10,11 @@ p.price {
     font-weight: bold; 
 }
 
+@media screen and (max-width: 1200px) {
+    .carousel-item {
+        max-height: 35vh;
+    }
+}
 
 @media screen and (max-width: 800px) {
     .carousel-item {

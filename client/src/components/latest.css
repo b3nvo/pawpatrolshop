@@ -1,0 +1,16 @@
+.items {
+    display: flex;
+}
+
+.card {
+    margin-top: 2em;
+    margin-left: 2em;
+    max-width: 15rem;
+    min-width: 17rem !important;
+    box-shadow: 0 0 0 black;
+    transition: .15s ease-in-out box-shadow;
+}
+
+.card:hover {
+    box-shadow: 2px 3px 4px 2px black;
+}

@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import "./latest.css";
+import {Card} from 'react-bootstrap';
+import image from '../images/Iphone-12-Pro-Max.jpg';
 
 class Latest extends React.Component {
   constructor(props) {
@@ -7,25 +9,31 @@ class Latest extends React.Component {
     this.state = { products: [] };
   }
 
-  handleChange = (data) => {
-    this.setState({ products: data });
-  };
-
-  componentDidMount() {
-    fetch("/api/products/latest", (err, resp) => {
-      if (err) console.log("fetch error", err.toString());
-
-      console.log("data :", resp);
-      if (resp.message == "OK") {
-        this.handleChange(resp.data);
-      }
-    });
+  async componentDidMount() {
+    console.log('hello')
+    const response = await fetch("/api/products/latest");
+    const json = await response.json();
+    this.setState({ products: json.data});
   }
 
   render() {
     return (
       <div className="producs">
-        <h1> products coming here </h1>
+        <h1> Latest products </h1>
+        <div className="items">
+          {this.state.products.map(el => (
+            <Card className="card">
+              <Card.Img variant="top" src={el.imagePath} />
+              <Card.Body>
+                <Card.Title>{el.name}</Card.Title>
+                <Card.Text>
+                  {el.description}
+                  € {el.price}
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          ))}
+        </div>
       </div>
     );
   }

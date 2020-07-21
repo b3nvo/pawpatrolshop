@@ -36,13 +36,14 @@ exports.validateCategory = (req, res, next) => {
 exports.addProduct = (req, res) => {
   // later admin beveiliging toevoegen
 
-  const { name, description, price, weight, categoryId } = req.body;
+  const { name, description, price, weight, imagePath, categoryId } = req.body;
   try {
     var product = new productModel({
       name: name,
       description: description,
       price: price,
       weight: weight,
+      imagePath: imagePath, 
       categoryId: mongoose.Types.ObjectId(categoryId),
     });
 
@@ -113,7 +114,7 @@ exports.getProductsByCategoryId = (req, res) => {
 };
 
 exports.updateProductById = (req, res) => {
-  const { name, description, price, weight, categoryId } = req.body;
+  const { name, description, price, weight, imagePath, categoryId } = req.body;
 
   try {
     productModel.findByIdAndUpdate(
@@ -123,6 +124,7 @@ exports.updateProductById = (req, res) => {
         description: description,
         price: price,
         weight: weight,
+        imagePath: imagePath,
         categoryId: mongoose.Types.ObjectId(categoryId),
       },
       (err, resp) => {
@@ -171,4 +173,14 @@ exports.deleteCategoryById = (req, res) => {
   }
 };
 
-exports.getLatestProducts = (req, res) => {};
+exports.getLatestProducts = (req, res) => {
+  productModel.find()
+  .sort({createdAt: 'descending'})
+  .exec((err, resp) => {
+    if (err) res.status(400).json({ message: err.toString() });
+
+    console.log('latest products', resp);
+
+    res.status(200).json({ message: 'OK', data: resp});
+  })
+};

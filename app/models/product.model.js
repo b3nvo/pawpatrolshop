@@ -6,6 +6,7 @@ const productScheme = new mongoose.Schema({
     price: mongoose.Types.Decimal128,
     weight: Number,
     createdAt: {type: Date, default: Date.now},
+    imagePath: String,
     categoryId: mongoose.Types.ObjectId
 });
 
