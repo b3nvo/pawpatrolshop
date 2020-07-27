@@ -1,3 +1,8 @@
+.Menu *{
+    z-index: 9 !important;
+    position: relative;
+}
+
 .carousel {
     max-width: 100%;
     height: auto;
@@ -11,7 +16,13 @@
     margin-top: 5em;
 }
 
+.loginDropDown {
+    z-index: 9;
+}
+
 body {
     margin-left: 10px;
     margin-right: 10px;
 }
+
+

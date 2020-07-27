@@ -1,12 +1,14 @@
 import React from 'react';
-import Login from './components/Login';
+import Login from './pages/Login';
+import Product from './pages/Product';
+import Admin from './pages/Admin';
 import logo from './logo.svg';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
-import Home from './components/Home';
+import Home from './pages/Home';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -17,15 +19,21 @@ function App() {
         <Route path="/home">
           <Home />
         </Route>
+        <Route path="/admin">
+          <Admin />
+        </Route>
         <Route path="/">
           <Start />
+        </Route>
+        <Route path="/product/:id">
+          <Product />
         </Route>
       </Switch>
     </Router>
   );
 }
 
-function Start() {
+function Start({history}) {
   return(
     <div className="App">
       <header className="App-header">
@@ -33,7 +41,7 @@ function Start() {
         <p>
           PawPatrolShop in-progress
         </p>
-        <Login />
+        <Login history={history} />
       </header>
     </div>
   )

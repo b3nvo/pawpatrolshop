@@ -1,11 +1,24 @@
 import React from "react";
-import Menu from "./Menu";
-import Latest from "./latest";
-import CarouselProducts from "./carousel";
+import Menu from "../components/Menu";
+import Latest from "../components/Latest";
+import CarouselProducts from "../components/Carousel";
 import { withRouter } from "react-router-dom";
 import "./Home.css";
 
-function Home() {
+class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      payload: this.props.payload,
+      token: this.props.token
+    }
+  }
+
+  componentDidMount() {
+    this.setState({payload: this.props.location.state.payload, token: this.props.location.state.token});
+  }
+
+  render() {
   return (
     <div className="home">
       <div className="Menu">
@@ -27,6 +40,7 @@ function Home() {
 
     
   );
+  }
 }
 
 export default withRouter(Home);

@@ -7,6 +7,14 @@
     display: none;
   }
   
+  .loginDropDown {
+    margin-right: 2em;
+    float: right;
+    box-shadow: 2px 2px 5px 2px black;
+    z-index: 1;
+    transition: .25s ease-in-out box-shadow;
+}
+
   .btn-circle {
         border: none;
         border-radius: 50%; 

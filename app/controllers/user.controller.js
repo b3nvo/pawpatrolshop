@@ -4,6 +4,7 @@ const userModel = require('../models/user.model');
 const assert = require('assert');
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 const saltRounds = 10;
 
 exports.validateUser = (req, res, next) => {
@@ -117,7 +118,31 @@ exports.login = async (req, res) => {
             if (err) res.status(400).json({ message: err.toString() });
 
             if (result) {
-                res.status(200).json({ message: "OK"});
+                const payload = {
+                    id: user[0]._id,
+                    email: user[0].email, 
+                    access: user[0].access
+                }
+
+                jwt.sign(
+                    payload,
+                    "secret",
+                    { expiresIn: "12h"},
+                    (err, token) => {
+                        if (err) {
+                            res.status(400).json({
+                                message: "error signing the token",
+                                err: err.toString()
+                            });
+                        } else {
+                            const result = {
+                                token: token,
+                                payload
+                            }
+                            res.status(200).json(result);
+                        }
+                    }
+                )
             } else {
                 res.status(400).json({ message: "password is incorrect"});
             }
