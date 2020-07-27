@@ -1,7 +1,7 @@
 import React from 'react';
-import Login from './pages/Login';
-import Admin from './pages/Admin';
-import Register from './pages/Register';
+import Login from '.pages/Login';
+import Admin from '.pages/Admin';
+import Register from '.pages/Register';
 import logo from './logo.svg';
 import {
   BrowserRouter as Router,
@@ -16,13 +16,13 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/home">
+        <Route exact path="/home">
           <Home />
         </Route>
-        <Route path="/admin">
+        <Route exact path="/admin" >
           <Admin />
         </Route>
-        <Route path="/register">
+        <Route exact path="/register">
           <Register />
         </Route>
         <Route path="/">
