@@ -12,10 +12,10 @@ class Home extends React.Component {
       payload: this.props.payload,
       token: this.props.token
     }
-  }
 
-  componentDidMount() {
-    this.setState({payload: this.props.location.state.payload, token: this.props.location.state.token});
+    if (this.props.location.state) { 
+      this.setState({payload: this.props.location.state.payload, token: this.props.location.state.token});
+    }
   }
 
   render() {

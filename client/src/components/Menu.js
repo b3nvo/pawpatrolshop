@@ -18,11 +18,15 @@ class Menu extends React.Component {
   render() {
     const { loginOpen } = this.state;
     const openLogin = () => {
-      if (this.props.location.state.payload.access == 1) {
-        console.log('to admin page');
-        this.props.history.push('/admin');
-      } else if (this.props.location.state.payload.access == 0) {
-        console.log('to profile page')
+      if (this.props.location.state) {
+        var state = this.props.location.state;
+
+        if (state.payload.access == 1) {
+          console.log('to admin page');
+          this.props.history.push('/admin');
+        } else {
+          console.log('to profile page')
+        }
       } else {
         this.setState({ loginOpen: !this.state.loginOpen });
       }

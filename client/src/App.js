@@ -1,7 +1,7 @@
 import React from 'react';
 import Login from './pages/Login';
-import Product from './pages/Product';
 import Admin from './pages/Admin';
+import Register from './pages/Register';
 import logo from './logo.svg';
 import {
   BrowserRouter as Router,
@@ -22,11 +22,11 @@ function App() {
         <Route path="/admin">
           <Admin />
         </Route>
+        <Route path="/register">
+          <Register />
+        </Route>
         <Route path="/">
           <Start />
-        </Route>
-        <Route path="/product/:id">
-          <Product />
         </Route>
       </Switch>
     </Router>

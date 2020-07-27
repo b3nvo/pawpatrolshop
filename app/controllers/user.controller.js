@@ -67,6 +67,18 @@ exports.addCountry = (req, res) => {
     }
 }
 
+exports.getCountries = (req, res) => {
+    try { 
+        countryModel.find().exec((err, resp) => {
+            if (err) res.status(400).json({ message: err.toString()});
+
+            res.status(200).json({data: resp});
+        })
+    } catch (err) {
+        res.status(400).json({ message: err.toString() });
+    }
+}
+
 exports.addUser = (req, res) => {
     const {email, password, firstName, lastName, countryId, address, zipCode, city} = req.body;
     var access = 0; // default user

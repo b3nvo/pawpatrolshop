@@ -1,0 +1,19 @@
+.register {
+    max-width: 50%;
+    text-align: center;
+    margin-left: 25%;
+}
+
+.inline { 
+    display: inline-flex;
+    
+}
+
+.block {
+    margin-left: 3em;
+    margin-right: 4em;
+}
+
+.short {
+    width: 115% !important;
+}
