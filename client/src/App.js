@@ -19,9 +19,6 @@ function App() {
         <Route exact path="/home">
           <Home />
         </Route>
-        <Route exact path="/admin" >
-          <Admin />
-        </Route>
         <Route exact path="/register">
           <Register />
         </Route>
