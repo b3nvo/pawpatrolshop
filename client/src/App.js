@@ -1,6 +1,5 @@
 import React from 'react';
 import Login from './pages/Login';
-import Admin from './pages/Admin';
 import Register from './pages/Register';
 import logo from './logo.svg';
 import {
