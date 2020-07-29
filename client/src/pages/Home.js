@@ -1,7 +1,7 @@
 import React from "react";
-import Menu from "./Menu.js";
-import Latest from "./Latest.js";
-import CarouselProducts from "../components/Carousel.js";
+import Menu from "./Menu";
+import Latest from "./Latest";
+import CarouselProducts from "./Carousel.js";
 import { withRouter } from "react-router-dom";
 import "./Home.css";
 
