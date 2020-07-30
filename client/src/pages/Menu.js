@@ -1,5 +1,5 @@
 import React from "react";
-import Login from '../pages/Login.js';
+import Login from './Login.js';
 import { withRouter } from "react-router-dom";
 import "./Menu.css";
 import { faUser } from "@fortawesome/free-solid-svg-icons";

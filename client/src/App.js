@@ -1,13 +1,13 @@
 import React from 'react';
 import Login from './pages/Login.js';
-import Register from './pages/Register.js';
+import Register from './pages/Register/Register.js';
 import logo from './logo.svg';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
-import Home from './pages/Home';
+import Home from './pages/Home/Home';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
