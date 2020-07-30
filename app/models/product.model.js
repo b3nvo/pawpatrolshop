@@ -7,7 +7,7 @@ const productScheme = new mongoose.Schema({
     weight: Number,
     createdAt: {type: Date, default: Date.now},
     imagePath: String,
-    categoryId: mongoose.Types.ObjectId
+    categoryId: {type: mongoose.Types.ObjectId, ref: 'Category'}
 });
 
 var schema = mongoose.model("Product", productScheme);

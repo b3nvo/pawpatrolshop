@@ -5,6 +5,7 @@ const assert = require('assert');
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+const map = require('../utils/map.utils');
 const saltRounds = 10;
 
 exports.validateUser = (req, res, next) => {
@@ -31,6 +32,31 @@ exports.validateUser = (req, res, next) => {
         res.status(400).json({
             message: err.toString()
         });
+    }
+}
+
+exports.checkUser = (req, res, next) => {
+    const token = req.get('Token');
+    console.log('token created', token);
+    try {
+        console.log('starting try/catch');
+        jwt.verify(token, 'secret', (err, decoded) => {
+            console.log('verifying');
+            if (err) { res.status(400).json({ message: err.toString() }); }
+
+            if (decoded.access !== 1) {
+                console.log('decoded', decoded);
+                res.status(400).json({
+                    message: 'not allowed!'
+                })
+            } else {
+                console.log('decoded', decoded);
+                next();
+            }
+        })
+    } catch (err) {
+        console.log('catch');
+        res.status(400).json({ message: err.toString() });
     }
 }
 
@@ -79,6 +105,23 @@ exports.getCountries = (req, res) => {
     }
 }
 
+exports.getUsers = (req, res) => {
+    try {
+        userModel
+        .find()
+        .populate('address')
+        .populate('countryId')
+        .exec((err, resp) => {
+            if (err) res.status(400).json({ message: err.toString() });
+
+            console.log(resp);
+            res.status(200).json({data: resp});
+        })
+    } catch (err) {
+        res.status(400).json({ message: err.toString() });
+    }
+}
+
 exports.addUser = (req, res) => {
     const {email, password, firstName, lastName, countryId, address, zipCode, city} = req.body;
     var access = 0; // default user
@@ -86,35 +129,39 @@ exports.addUser = (req, res) => {
         if (err) res.status(400).json({ message: err.toString() });
         bcrypt.hash(password, salt, (error, hash) => {
             if (error) res.status(400).json({ message: error.toString() });
+            
+            const userAddress = new userAddressModel(
+                {address: address, zipCode: zipCode, city: city }
+            );
+            
+            userAddress.save((errs, saved) => {
+                if (errs) res.status(400).json({message: errs.toString() });
 
-            var user = new userModel(
+                var user = new userModel(
                     {
                         email: email, 
                         password: hash, 
                         firstName: firstName, 
                         lastName: lastName, 
                         countryId: mongoose.Types.ObjectId(countryId), 
-                        access: 0
+                        access: 0,
+                        address: saved._id
                     }
                 );
 
-            user.save((errr, saved) => {
-                if (errr) res.status(400).json({ message: errr.toString() });
+                user.save((errr, saved) => {
+                    if (errr) res.status(400).json({ message: errr.toString() });
 
-                if (saved !== undefined) {
-                    const userAddress = new userAddressModel(
-                            {address: address, zipCode: zipCode, city: city, userId: mongoose.Types.ObjectId(saved._id)}
-                        );
-
-                    userAddress.save((errs, saved) => {
-                        if (errs) res.status(400).json({message: errs.toString() });
-
-                        res.status(200).json({
-                            message: 'added',
-                            data: saved
-                        });
+                    if (saved !== undefined) {
+                        
+                    }
+                
+                    res.status(200).json({
+                        message: 'added',
+                        data: saved
                     });
-                }
+
+                });
             });
         });
     });

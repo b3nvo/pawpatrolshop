@@ -12,8 +12,14 @@ class Menu extends React.Component {
     this.state = {
       loginOpen: false,
     }
+
+    this.navigate = this.navigate.bind(this);
   }
 
+  navigate(event) {
+    console.log('navigating to : ' + event.target.id);
+    this.props.history.push('/' + event.target.id);
+  }
 
   render() {
     const { loginOpen } = this.state;
@@ -21,9 +27,12 @@ class Menu extends React.Component {
       if (this.props.location.state) {
         var state = this.props.location.state;
 
-        if (state.payload.access == 1) {
+        if (state.payload.access === 1) {
           console.log('to admin page');
-          this.props.history.push('/admin');
+          this.props.history.push({
+            pathname: '/admin',
+            state: {payload: state.payload, token: state.token}
+          });
         } else {
           console.log('to profile page')
         }
@@ -39,17 +48,17 @@ class Menu extends React.Component {
               <a href="#home">PawPatrolShop</a>
           </li>
           <li>
-            <a href="#" className="nav-item">
+            <a className="nav-item" onClick={this.navigate} id="home">
               Home
             </a>
           </li>
           <li>
-            <a href="#products" className="nav-item">
+            <a className="nav-item" onClick={this.navigate} id="products">
               Products
             </a>
           </li>
           <li>
-            <a href="#contact" className="nav-item">
+            <a className="nav-item" onClick={this.navigate} id="contact">
               Contact
             </a>
           </li>

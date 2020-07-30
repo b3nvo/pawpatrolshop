@@ -60,8 +60,8 @@
     }
 
     a.nav-item {
-        color: black;
-
+      color: black;
+      cursor: pointer;
         text-decoration: none;
         letter-spacing: 0.15em;
         text-decoration: none;

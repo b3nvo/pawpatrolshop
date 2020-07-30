@@ -14,6 +14,7 @@ class Login extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.validateForm = this.validateForm.bind(this);
   }
+  
   validateForm() {
     const {email, password } = this.state;
     return email.length > 0 && password.length > 0;

@@ -5,7 +5,6 @@ const userAddressScheme = new mongoose.Schema({
     zipCode: String,
     CreatedAt: {type: Date, default: Date.now},
     UpdatedAt: {type: Date, default: null},
-    userId: mongoose.Types.ObjectId
 });
 
 var schema = mongoose.model("User_Address", userAddressScheme);

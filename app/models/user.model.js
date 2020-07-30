@@ -6,8 +6,9 @@ const userScheme = new mongoose.Schema({
     firstName: String,
     lastName: String,
     createdAt: {type: Date, default: Date.now},
-    countryId: mongoose.Types.ObjectId,
-    access: Number
+    countryId: {type: mongoose.Types.ObjectId, ref: 'Country'},
+    access: Number,
+    address: [{type: mongoose.Types.ObjectId, ref: 'User_Address'}]
 });
 
 userScheme.path('email').validate(async (email) => {

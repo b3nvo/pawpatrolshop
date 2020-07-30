@@ -1,7 +1,11 @@
 import React from 'react';
 import Login from './pages/Login.js';
 import Register from './pages/Register/Register.js';
+import Admin from './pages/Admin/Admin';
+import Product from './pages/Product/Product';
+import Contact from './pages/Contact/Contact';
 import logo from './logo.svg';
+import Menu from './pages/Menu';
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,10 +20,24 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/home">
+          <Menu />
           <Home />
         </Route>
         <Route exact path="/register">
+          <Menu />
           <Register />
+        </Route>
+        <Route exact path="/admin">
+          <Menu />
+          <Admin />
+        </Route>
+        <Route exact path="/products">
+          <Menu />
+          <Product />
+        </Route>
+        <Route exact path="/contact">
+          <Menu />
+          <Contact /> 
         </Route>
         <Route path="/">
           <Start />

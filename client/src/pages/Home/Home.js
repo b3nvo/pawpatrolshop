@@ -1,5 +1,4 @@
 import React from "react";
-import Menu from "../Menu";
 import Latest from "./Latest";
 import CarouselProducts from "./Carousel.js";
 import { withRouter } from "react-router-dom";
@@ -19,27 +18,21 @@ class Home extends React.Component {
   }
 
   render() {
-  return (
-    <div className="home">
-      <div className="Menu">
-        <Menu />
+    return (
+      <div className="home">
+        <div className="carousel">
+          <CarouselProducts />
+        </div>
+
+        <div className="products">
+          <Latest />
+        </div>
+
+        <div className="footer">
+        <h1> footer here </h1>
       </div>
-
-      <div className="carousel">
-        <CarouselProducts />
       </div>
-
-      <div className="products">
-        <Latest />
-      </div>
-
-      <div className="footer">
-      <h1> footer here </h1>
-    </div>
-    </div>
-
-    
-  );
+    );
   }
 }
 

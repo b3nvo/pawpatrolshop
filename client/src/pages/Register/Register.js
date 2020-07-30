@@ -57,7 +57,7 @@ class Register extends React.Component {
     }
 
     render() {
-        const {email, password, firstName, lastName, countryId, address, zipCode, city} = this.state;
+        const {email, password, firstName, lastName, address, zipCode, city} = this.state;
         return(
             <Form className="register" onSubmit={this.register}>
                 <Form.Group controlId="email">
