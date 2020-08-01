@@ -1,6 +1,8 @@
 .table {
     border: 0;
     width: 80%;
+    background-color: #dadada;
+    color: #2e2e2e;
 }
 
 .btn-new {
