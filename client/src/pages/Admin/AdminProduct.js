@@ -96,7 +96,7 @@ class AdminProduct extends React.Component {
                 <div className="Result">
                     {result !== "" ? <p>{result}</p> : null}
                 </div>
-                <Table striped size="sm" className="table">
+                <Table striped hover className="table">
                     <thead>
                         <tr>
                             <th>Name</th>

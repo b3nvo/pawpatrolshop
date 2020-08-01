@@ -92,7 +92,7 @@ class AdminUsers extends React.Component {
 
         return (
             <div className="admin-table">
-                <Table striped size="sm" className="table">
+                <Table striped hover className="table">
                     <thead>
                         <tr>
                             <th>First name</th>
