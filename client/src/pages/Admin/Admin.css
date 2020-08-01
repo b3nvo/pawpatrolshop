@@ -14,7 +14,8 @@
     width: 85%;
 }
 
-.tab *{
-    background-color: #5c5c5c;
-    color: white;
+.inner-page {
+    background-color: #dadada;
+    color: #2e2e2e;
+    margin-right: 2em;
 }

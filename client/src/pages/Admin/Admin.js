@@ -1,8 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Nav } from 'react-bootstrap';
-import Admin_Users from './Admin_Users';
-import Admin_Product from './Admin_Product';
+import AdminUsers from './AdminUsers';
+import AdminProduct from './AdminProduct';
 import './Admin.css';
 
 class Admin extends React.Component {
@@ -34,7 +34,7 @@ class Admin extends React.Component {
                         <Nav.Link id="orders">Orders</Nav.Link>       
                     </Nav>
                 </div>
-                <div className="float-right tab mg-5-top w-80 h-100">
+                <div className="float-right mg-5-top w-80 h-100">
                     <div className="inner-page">
                         {
                           (page === "" || page === "home") &&
@@ -44,12 +44,12 @@ class Admin extends React.Component {
                         }
                         {
                             page === "users" &&
-                            <Admin_Users location={this.props.location}/>
+                            <AdminUsers location={this.props.location}/>
                             
                         }
                         {
                             page === "products" &&
-                            <Admin_Product />
+                            <AdminProduct location={this.props.location}/>
                         }
                         {
                             page === "orders" &&

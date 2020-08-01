@@ -2,6 +2,7 @@ import React from "react";
 import "./Latest.css";
 import {Card} from 'react-bootstrap';
 
+
 class Latest extends React.Component {
   constructor(props) {
     super(props);

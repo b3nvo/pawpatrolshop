@@ -44,7 +44,7 @@ exports.checkUser = (req, res, next) => {
             console.log('verifying');
             if (err) { res.status(400).json({ message: err.toString() }); }
 
-            if (decoded.access !== 1) {
+            if (decoded.access < 1) {
                 console.log('decoded', decoded);
                 res.status(400).json({
                     message: 'not allowed!'
