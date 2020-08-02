@@ -40,6 +40,13 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
+"@taisuke-j/react-grid-view@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@taisuke-j/react-grid-view/-/react-grid-view-0.0.7.tgz#adf34655eb137fa6a7f7e6f0ed0362fef1b8969c"
+  integrity sha512-CEPNOzolKqoD19v54cYH7ErFudB1D8GM2XrwDpYWXv6UqNCnbxk8P7HJZUrnvyW57+DtGKQxnzI6bEmmf+4UKQ==
+  dependencies:
+    prop-types "^15.6.0"
+
 "@types/color-name@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
@@ -1603,7 +1610,7 @@ process-nextick-args@~2.0.0:
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.1.tgz#7820d9b16120cc55ca9ae7792680ae7dba6d7fe2"
   integrity sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==
 
-prop-types@^15.7.2:
+prop-types@^15.6.0, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==

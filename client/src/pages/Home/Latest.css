@@ -1,5 +1,6 @@
 .items {
     display: flex;
+    flex-direction: row;
 }
 
 .card {
@@ -8,9 +9,21 @@
     max-width: 15rem;
     min-width: 17rem !important;
     box-shadow: 0 0 0 black;
-    transition: .15s ease-in-out box-shadow;
+    transition: .1s ease-in-out box-shadow;
 }
 
 .card:hover {
     box-shadow: 2px 3px 4px 2px black;
+}
+
+.col-card {
+    padding-left: 5em !important;
+    padding-right: 5em !important;
+}
+
+.item { 
+    height: 200px;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
 }
