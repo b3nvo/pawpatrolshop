@@ -46,7 +46,7 @@ export default class AdminUsersModal extends React.Component {
           this.props.setError('failed deleting the user');
           break;
         }
-        case 'default':
+        default:
           // do nothing
           break;
         case 'btn-edit':

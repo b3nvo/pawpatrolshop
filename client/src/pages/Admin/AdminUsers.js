@@ -84,7 +84,7 @@ class AdminUsers extends React.Component {
     }
 
     render() {
-        const { users, admin, modalPage, selectedUser, showModal } = this.state;
+        const { users, modalPage, selectedUser, showModal } = this.state;
         console.log("users", users);
 
         return (

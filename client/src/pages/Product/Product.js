@@ -29,7 +29,7 @@ class Product extends React.Component {
         return (
             <div className="product-page">
                 <div className="float-left m-t-5 m-l-2 hw-50">
-                    <img src={product.imagePath} />
+                    <img src={product.imagePath} alt={product.name} />
                 </div>
                 <div className="float-right m-t-5 m-r-40">
                     <h3> {product.name} </h3>

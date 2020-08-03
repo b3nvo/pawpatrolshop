@@ -47,12 +47,12 @@ export default class AdminProductModal extends React.Component {
                     this.props.setResult("An error occured while deleting the product, please contact the developer.");
                     break;
                 }
-            case "default":
-                // do nothing
-                break;
             case "btn-edit":
                 break;
             case "btn-new":
+                break;
+            default:
+                console.log('hello world')
                 break;
         }
     };

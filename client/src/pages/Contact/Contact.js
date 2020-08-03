@@ -5,6 +5,12 @@ import './Contact.css';
 class Contact extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            name: '',
+            email: '',
+            body: ''
+        };
     }
 
     render() {

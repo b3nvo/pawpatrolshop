@@ -2,6 +2,7 @@ import React from "react";
 import Login from './Login.js';
 import { withRouter } from "react-router-dom";
 import "./Menu.css";
+import { Popover, OverlayTrigger } from 'react-bootstrap';
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -26,6 +27,7 @@ class Menu extends React.Component {
 
   render() {
     const { loginOpen } = this.state;
+
     const openLogin = async () => {
       if (this.props.location.state) {
         var state = this.props.location.state;
@@ -47,8 +49,16 @@ class Menu extends React.Component {
         }
       } else {
         this.setState({ loginOpen: !this.state.loginOpen });
+        
       }
     }
+
+    const popover = (
+      <Popover>
+          <Popover.Title as="h3">Login</Popover.Title>
+          <Popover.Content><Login /></Popover.Content>
+        </Popover>
+    )
 
     return (
       <div className="menuBar">
@@ -71,19 +81,21 @@ class Menu extends React.Component {
               Contact
             </a>
           </li>
+          <OverlayTrigger
+          className="btn-login-li"
+          trigger="click"
+          placement="bottom"
+          show={loginOpen}
+          overlay={popover}
+          >
           <li className="btn-login-li">
-            <a href="#login" className="desktop-hidden nav-item" onClick={ openLogin }>
-              Login
-            </a>
-            <button className="btn-circle btn-login" onClick={openLogin}>
+            <button className="btn-circle btn-login" onClick={openLogin} id="loginButton">
               <FontAwesomeIcon icon={faUser} size="2x"></FontAwesomeIcon>
             </button>
           </li>
+          </OverlayTrigger>
         </nav>
-        { loginOpen
-        ? <div className="loginDropDown"><Login /></div>
-        : <div></div>
-        }
+        
       </div>
     );
   }

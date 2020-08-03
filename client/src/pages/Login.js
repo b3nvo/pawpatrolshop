@@ -23,8 +23,6 @@ class Login extends React.Component {
   async handleSubmit(event) {
     event.preventDefault();
     const { email, password } = this.state;
-    
-    var result = {};
 
     const requestOptions = {
       method: "POST",
