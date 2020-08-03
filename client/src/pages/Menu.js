@@ -26,18 +26,24 @@ class Menu extends React.Component {
 
   render() {
     const { loginOpen } = this.state;
-    const openLogin = () => {
+    const openLogin = async () => {
       if (this.props.location.state) {
         var state = this.props.location.state;
 
-        if (state.payload.access === 1) {
-          console.log('to admin page');
+        var requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "Token": `${state.token}` },
+        }
+        const checkUser = await fetch('/api/users/admin/check', requestOptions);
+        const json = await checkUser.json();
+
+        if(json.message === "OK") {
           this.props.history.push({
             pathname: '/admin',
-            state: {payload: state.payload, token: state.token}
-          });
+            state: {token: state.token, email: state.email}
+          })
         } else {
-          console.log('to profile page')
+          console.log('to profile page');                                    
         }
       } else {
         this.setState({ loginOpen: !this.state.loginOpen });
