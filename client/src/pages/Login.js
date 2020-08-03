@@ -40,7 +40,7 @@ class Login extends React.Component {
             this.setState({token: data.token});
     
             this.props.history.push({
-              pathname: '/home',
+              pathname: '/',
               state: {email: this.state.email, token: data.token}
             });
           } else {

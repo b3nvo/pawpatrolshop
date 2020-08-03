@@ -43,9 +43,21 @@ class Menu extends React.Component {
           this.props.history.push({
             pathname: '/admin',
             state: {token: state.token, email: state.email}
-          })
+          });
+
+          if (loginOpen) { 
+            this.setState({ loginOpen: !this.state.loginOpen });                                    
+          }
+
         } else {
-          console.log('to profile page');                                    
+          this.props.history.push({
+            pathname: '/profile',
+            state: {token: state.token, email: state.email}
+          })
+          if (loginOpen) {
+            
+            this.setState({ loginOpen: !this.state.loginOpen });                                    
+          }
         }
       } else {
         this.setState({ loginOpen: !this.state.loginOpen });

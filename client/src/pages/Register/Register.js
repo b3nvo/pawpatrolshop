@@ -49,7 +49,7 @@ class Register extends React.Component {
             .then((response) => response.json())
             .then((data) => {
               if (data.message === 'added') {
-                this.props.history.push('/home');
+                this.props.history.push('/');
               } else {
                 console.log('something went wrong')
               }

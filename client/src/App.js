@@ -5,6 +5,7 @@ import Admin from './pages/Admin/Admin';
 import Product from './pages/Product/Product';
 import Products from './pages/Products/Products'
 import Contact from './pages/Contact/Contact';
+import Profile from './pages/Profile/Profile';
 import logo from './logo.svg';
 import Menu from './pages/Menu';
 import {
@@ -20,7 +21,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/home">
+        <Route exact path="/">
           <Menu />
           <Home />
         </Route>
@@ -40,12 +41,13 @@ function App() {
           <Menu />
           <Product />
         </Route>
+        <Route exact path="/profile">
+          <Menu />
+          <Profile />
+        </Route>
         <Route exact path="/contact">
           <Menu />
           <Contact /> 
-        </Route>
-        <Route path="/">
-          <Start />
         </Route>
       </Switch>
     </Router>
