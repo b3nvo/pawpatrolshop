@@ -5,7 +5,6 @@ const assert = require('assert');
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
-const map = require('../utils/map.utils');
 const saltRounds = 10;
 
 exports.validateUser = (req, res, next) => {

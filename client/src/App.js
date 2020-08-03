@@ -3,6 +3,7 @@ import Login from './pages/Login.js';
 import Register from './pages/Register/Register.js';
 import Admin from './pages/Admin/Admin';
 import Product from './pages/Product/Product';
+import Products from './pages/Products/Products'
 import Contact from './pages/Contact/Contact';
 import logo from './logo.svg';
 import Menu from './pages/Menu';
@@ -32,6 +33,10 @@ function App() {
           <Admin />
         </Route>
         <Route exact path="/products">
+          <Menu />
+          <Products />
+        </Route>
+        <Route path="/product/:productId">
           <Menu />
           <Product />
         </Route>
