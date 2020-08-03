@@ -1,7 +1,7 @@
-import React from 'react';
-import './AdminProduct.css';
-import  Table  from "react-bootstrap/Table";
-import AdminProductModal from './AdminProductModal';
+import React from "react";
+import "./AdminProduct.css";
+import Table from "react-bootstrap/Table";
+import AdminProductModal from "./AdminProductModal";
 import { faEdit, faBan, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -28,19 +28,17 @@ class AdminProduct extends React.Component {
     async fetchData() {
         var state = this.props.location.state;
 
-        if (state.payload.access === 1) {
-            try {
-                const requestOptions = {
-                    method: "GET",
-                    headers: { "Content-Type": "application/json", Token: `${state.token}` }
-                };
-                const response = await fetch("/api/products", requestOptions);
-                const json = await response.json();
+        try {
+            const requestOptions = {
+                method: "GET",
+                headers: { "Content-Type": "application/json", Token: `${state.token}` }
+            };
+            const response = await fetch("/api/products", requestOptions);
+            const json = await response.json();
 
-                this.setState({ products: json.data, admin: state.payload });
-            } catch (err) {
-                console.log(err);
-            }
+            this.setState({ products: json.data, admin: state.payload });
+        } catch (err) {
+            console.log(err);
         }
     }
 
@@ -86,16 +84,13 @@ class AdminProduct extends React.Component {
         }
     }
 
-
     render() {
         const { products, modalPage, selectedProduct, showModal, result } = this.state;
         console.log("products", products);
 
         return (
             <div className="admin-table">
-                <div className="Result">
-                    {result !== "" ? <p>{result}</p> : null}
-                </div>
+                <div className="result">{result !== "" ? <p>{result}</p> : null}</div>
                 <Table striped hover className="table">
                     <thead>
                         <tr>
@@ -120,7 +115,7 @@ class AdminProduct extends React.Component {
                                 <td> € {el.price.$numberDecimal}</td>
                                 <td>{el.weight} Gr </td>
                                 <td className="path">{el.imagePath}</td>
-                                <td>{ el.categoryId.name }</td>
+                                <td>{el.categoryId.name}</td>
                                 <td className="actions">
                                     <button
                                         className="btn-edit"

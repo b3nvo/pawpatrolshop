@@ -7,7 +7,7 @@ export default class AdminProductModal extends React.Component {
 
         this.state = {
             showModal: this.props.showModal,
-            product: this.props.user || "",
+            product: this.props.product || "",
             modalType: this.props.modalPage || "",
             admin: this.props.state
         };
@@ -37,7 +37,7 @@ export default class AdminProductModal extends React.Component {
                     method: "DELETE",
                     headers: { "Content-Type": "application/json", Token: `${this.props.state.token}` }
                 };
-                const request = await fetch(`/api/products/${this.state.user}`, requestOptions);
+                const request = await fetch(`/api/products/${this.state.product}`, requestOptions);
                 const json = await request.json();
                 if (json.message === "deleted") {
                     this.props.setResult("Successfully deleted product");

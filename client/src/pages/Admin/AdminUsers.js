@@ -27,20 +27,17 @@ class AdminUsers extends React.Component {
 
     async fetchData() {
         var state = this.props.location.state;
+        try {
+            const requestOptions = {
+                method: "GET",
+                headers: { "Content-Type": "application/json", Token: `${state.token}` }
+            };
+            const response = await fetch("/api/users", requestOptions);
+            const json = await response.json();
 
-        if (state.payload.access === 1) {
-            try {
-                const requestOptions = {
-                    method: "GET",
-                    headers: { "Content-Type": "application/json", Token: `${state.token}` }
-                };
-                const response = await fetch("/api/users", requestOptions);
-                const json = await response.json();
-
-                this.setState({ users: json.data, admin: state.payload });
-            } catch (err) {
-                console.log(err);
-            }
+            this.setState({ users: json.data, admin: state.payload });
+        } catch (err) {
+            console.log(err);
         }
     }
 
@@ -101,7 +98,7 @@ class AdminUsers extends React.Component {
                             <th>Country</th>
                             <th>Zipcode</th>
                             <th>Address</th>
-                            {admin.access === 1 ? <th>access</th> : <th></th>}
+                            <th>access</th>
                             <th className="mg-1">
                                 <button className="btn-new" id="btn-new">
                                     <FontAwesomeIcon icon={faPlus} />
@@ -118,7 +115,7 @@ class AdminUsers extends React.Component {
                                 <td>{el.countryId.name}</td>
                                 <td>{el.address[0].zipCode}</td>
                                 <td>{el.address[0].address}</td>
-                                {admin.access === 1 ? <td>{el.access}</td> : <td></td>}
+                                <td>{el.access}</td>
                                 <td className="actions">
                                     <button
                                         className="btn-edit"

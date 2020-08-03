@@ -70,3 +70,7 @@
     border-radius: 5px;
     border: 2px solid black;
   }
+
+  .result { 
+      text-align: center;
+  }
