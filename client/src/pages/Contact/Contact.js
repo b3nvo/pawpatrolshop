@@ -1,4 +1,5 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 import './Contact.css';
 
 class Contact extends React.Component {
@@ -15,4 +16,4 @@ class Contact extends React.Component {
     }
 }
 
-export default Contact;
+export default withRouter(Contact);

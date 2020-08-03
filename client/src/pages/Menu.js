@@ -18,7 +18,10 @@ class Menu extends React.Component {
 
   navigate(event) {
     console.log('navigating to : ' + event.target.id);
-    this.props.history.push('/' + event.target.id);
+    this.props.history.push({
+      pathname: '/' + event.target.id,
+      state: this.props.location.state
+    });
   }
 
   render() {
