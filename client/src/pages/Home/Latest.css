@@ -8,12 +8,12 @@
     margin-left: 2em;
     max-width: 15rem;
     min-width: 17rem !important;
-    box-shadow: 0 0 0 black;
+    box-shadow: 0 0 0 #272727;
     transition: .1s ease-in-out box-shadow;
 }
 
 .card:hover {
-    box-shadow: 2px 3px 4px 2px black;
+    box-shadow: 7px 11px 27px -7px #272727;
 }
 
 .col-card {
@@ -26,4 +26,10 @@
     width: 100px;
     display: flex;
     flex-direction: column;
+}
+
+.card-img-top {
+    height: 270px !important;
+    width: 270px !important;
+    background-size: cover !important;
 }

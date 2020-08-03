@@ -50,7 +50,14 @@ class Home extends React.Component {
                 </div>
 
                 <div className="footer">
-                    <h1> footer here </h1>
+                    <div className="inline">
+                        <div className="float-left m-l-1">
+                            <p><b>PawPatrolShop</b> ©    All rights reserved</p>
+                        </div>
+                        <div className="float-right">
+
+                        </div>
+                    </div>
                 </div>
             </div>
         );

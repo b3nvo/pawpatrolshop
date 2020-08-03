@@ -26,3 +26,18 @@ body {
 }
 
 
+.footer * {
+    width: 100%;
+    background-color: #272727;
+    color: white;
+}
+
+.m-l-1 {
+    margin-left: 2em;
+    margin-top: 1em;
+}
+
+.m-t-50 {
+    margin-top: 25%;
+}
+
