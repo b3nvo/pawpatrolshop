@@ -20,7 +20,7 @@ class Menu extends React.Component {
   navigate(event) {
     console.log('navigating to : ' + event.target.id);
     this.props.history.push({
-      pathname: '/' + event.target.id === 'home' ? '' : event.target.id,
+      pathname: '/' + event.target.id,
       state: this.props.location.state
     });
   }
@@ -76,10 +76,10 @@ class Menu extends React.Component {
       <div className="menuBar">
         <nav className="navMenu">
           <li className="nav-left">
-              <a href="#home">PawPatrolShop</a>
+              <a href="">PawPatrolShop</a>
           </li>
           <li>
-            <a className="nav-item" onClick={this.navigate} id="home">
+            <a className="nav-item" onClick={this.navigate} id="">
               Home
             </a>
           </li>

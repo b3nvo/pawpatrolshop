@@ -6,5 +6,5 @@ exports.createObject = (objectKey) => {
       var keyName = keys[k];
       data.push(objectKey[keyName]);
     }
-    return data;
+    return data; 
   };
