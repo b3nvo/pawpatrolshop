@@ -15,6 +15,7 @@ class Menu extends React.Component {
     }
 
     this.navigate = this.navigate.bind(this);
+    this.setLoginOpen = this.setLoginOpen.bind(this);
   }
 
   navigate(event) {
@@ -23,6 +24,10 @@ class Menu extends React.Component {
       pathname: '/' + event.target.id,
       state: this.props.location.state
     });
+  }
+
+  setLoginOpen() {
+    this.setState({ loginOpen: !this.state.loginOpen });    
   }
 
   render() {
@@ -68,7 +73,7 @@ class Menu extends React.Component {
     const popover = (
       <Popover>
           <Popover.Title as="h3">Login</Popover.Title>
-          <Popover.Content><Login /></Popover.Content>
+          <Popover.Content><Login setLoginOpen={this.setLoginOpen} /></Popover.Content>
         </Popover>
     )
 

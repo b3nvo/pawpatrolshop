@@ -43,6 +43,8 @@ class Login extends React.Component {
               pathname: '/',
               state: {email: this.state.email, token: data.token}
             });
+
+            this.props.setLoginOpen();
           } else {
             // do nothing
           }
