@@ -3,7 +3,12 @@ const account = require("../controllers/user.controller");
 const controller = require("../controllers/order.controller");
 
 // POST
-router.post("/", account.checkUser, controller.postOrder);
+router.post(
+  "/",
+  account.checkUser,
+  controller.validateOrder,
+  controller.postOrder
+);
 
 // GET
 router.get("/", account.checkUser, controller.getOrders);
