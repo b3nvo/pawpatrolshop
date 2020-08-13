@@ -11,18 +11,18 @@ router.post(
 );
 
 // GET
-router.get("/", account.checkUser, controller.getOrders);
-router.get(
-  "/:orderID",
-  account.checkUser,
-  account.checkOrderUser,
-  controller.getOrder
-);
+router.get("/", account.checkAdmin, controller.getOrders);
+// router.get(
+//   "/:orderID",
+//   account.checkUser,
+//   account.checkOrderUser,
+//   controller.getOrder
+// );
 
 // UPDATE
-router.put("/:orderID", account.checkUser, controller.updateOrderById);
+// router.put("/:orderID", account.checkUser, controller.updateOrderById);
 
 // DELETE
-router.delete("/:orderID", account.checkUser, controller.DeleteOrderByID);
+// router.delete("/:orderID", account.checkUser, controller.DeleteOrderByID);
 
 module.exports = router;

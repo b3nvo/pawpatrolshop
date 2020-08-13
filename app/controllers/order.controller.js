@@ -46,3 +46,15 @@ exports.postOrder = (req, res) => {
     res.status(400).json({ message: err.toString() });
   }
 };
+
+exports.getOrders = (req, res) => {
+  orderModel
+    .find()
+    .populate("Order_Product")
+    .populate("User")
+    .exec((err, resp) => {
+      if (err) res.status(400).json({ message: err.toString() });
+
+      res.status(200).json({ message: "OK", data: resp });
+    });
+};
