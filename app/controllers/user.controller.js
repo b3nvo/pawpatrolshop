@@ -40,6 +40,7 @@ exports.checkAdmin = (req, res, next) => {
     try {
         console.log('starting try/catch');
         jwt.verify(token, 'secret', (err, decoded) => {
+            console.log(decoded);
             console.log('verifying');
             if (err) { res.status(400).json({ message: err.toString() }); }
 
@@ -56,6 +57,12 @@ exports.checkAdmin = (req, res, next) => {
         console.log('catch');
         res.status(400).json({ message: err.toString() });
     }
+}
+
+exports.acceptAdmin = (req, res) => {
+    res.status(200).json({
+        message: "OK"
+    })
 }
 
 exports.checkUser = (req, res, next) => {

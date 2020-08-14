@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { Nav } from 'react-bootstrap';
 import AdminUsers from './AdminUsers';
 import AdminProduct from './AdminProduct';
+import AdminOrder from './AdminOrder';
 import './Admin.css';
 
 class Admin extends React.Component {
@@ -53,9 +54,7 @@ class Admin extends React.Component {
                         }
                         {
                             page === "orders" &&
-                            <h2>
-                                order control
-                            </h2>
+                            <AdminOrder location={this.props.location} />
                         }
                         
                     </div>
