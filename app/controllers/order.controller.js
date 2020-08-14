@@ -57,13 +57,12 @@ exports.postOrder = (req, res) => {
 };
 
 exports.getOrders = async (req, res) => {
-    console.log('getting orders - GET')
-    // getting all orders for admin
-    const orderProduct = orderProductModel.populate("product");
-
     orderModel
-    .find()
-    .populate(orderProduct)
+    .find() 
+    .populate({
+      path: 'order_product',
+      populate: {path: 'product'}
+    })
     .exec((err, resp) => {
       if (err) res.status(400).json({ error: err.toString() });
   
