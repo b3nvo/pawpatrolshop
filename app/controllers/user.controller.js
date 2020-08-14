@@ -34,7 +34,7 @@ exports.validateUser = (req, res, next) => {
     }
 }
 
-exports.checkAdmin = (req, res) => {
+exports.checkAdmin = (req, res, next) => {
     const token = req.get('Token');
     console.log('token created', token);
     try {
@@ -49,9 +49,7 @@ exports.checkAdmin = (req, res) => {
                     message: 'not allowed!'
                 })
             } else {
-                res.status(200).json({
-                    message: 'OK'
-                });
+                next();
             }
         })
     } catch (err) {
@@ -68,16 +66,10 @@ exports.checkUser = (req, res, next) => {
         jwt.verify(token, 'secret', (err, decoded) => {
             console.log('verifying');
             if (err) { res.status(400).json({ message: err.toString() }); }
-
-            if (decoded.access < 1) {
-                console.log('decoded', decoded);
-                res.status(400).json({
-                    message: 'not allowed!'
-                })
-            } else {
-                console.log('decoded', decoded);
-                next();
-            }
+            
+            console.log('decoded', decoded);
+            req.userId = decoded.id;
+            next();
         })
     } catch (err) {
         console.log('catch');

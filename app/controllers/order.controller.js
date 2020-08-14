@@ -6,12 +6,20 @@ const assert = require("assert");
 // CHECKS
 exports.validateOrder = (req, res, next) => {
   try {
-    const { user, totalPrice, products } = req.body;
-    assert(typeof user === String, "User is missing");
-    assert.notEqual(user, "", "cant be empty");
-    assert(typeof totalPrice === String, "totalPrice is missing");
-    assert.notEqual(totalPrice, "", "cant be empty");
-    assert(typeof products === Array, "products are missing");
+    const { totalPrice, products } = req.body;
+    const userId = req.userId;
+    console.log(typeof userId);
+    assert(typeof userId === 'string', "userId is missing");
+    assert.notEqual(userId, "", "userId cant be an Empty value");
+    assert(typeof totalPrice === 'string', "totalPrice is missing");
+    Array.isArray((err, res) => {
+      console.log('is array err', err);
+      console.log("is array resp", res)
+    })
+
+    // later needs payment information.
+    // this is fine for test
+
     next();
   } catch (err) {
     res.status(400).json({ message: err.toString() });
@@ -20,7 +28,8 @@ exports.validateOrder = (req, res, next) => {
 
 // POST
 exports.postOrder = (req, res) => {
-  const { user, totalPrice, products } = req.body;
+  const {totalPrice, products } = req.body;
+  const user = req.userId;
 
   try {
     const order = new orderProductModel({
@@ -31,7 +40,7 @@ exports.postOrder = (req, res) => {
       if (err) res.status(400).json({ message: err.toString() });
 
       const actualOrder = new orderModel({
-        user: user,
+        user: mongoose.Types.ObjectId(user),
         order_product: saved._id,
         totalPrice: totalPrice,
       });
@@ -47,14 +56,17 @@ exports.postOrder = (req, res) => {
   }
 };
 
-exports.getOrders = (req, res) => {
-  orderModel
-    .find()
-    .populate("Order_Product")
-    .populate("User")
-    .exec((err, resp) => {
-      if (err) res.status(400).json({ message: err.toString() });
+exports.getOrders = async (req, res) => {
+    console.log('getting orders - GET')
+    // getting all orders for admin
+    const orderProduct = orderProductModel.populate("product");
 
-      res.status(200).json({ message: "OK", data: resp });
-    });
+    orderModel
+    .find()
+    .populate(orderProduct)
+    .exec((err, resp) => {
+      if (err) res.status(400).json({ error: err.toString() });
+  
+      res.status(200).json({ message: 'OK', data: resp});
+    })
 };
